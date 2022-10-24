@@ -6,7 +6,10 @@ data class Customer(
     val shoppingCart: ShoppingCart
 ): User(id)
 
-data class CustomerName (
-    val firstName: String,
-    val lastName: String
-)
+data class CustomerName(private val firstName: String, private val lastName: String) {
+
+    init {
+        require(firstName.isNotEmpty()) { "First name can not be empty" }
+        require(lastName.isNotEmpty()) { "Last name can not be empty" }
+    }
+}
