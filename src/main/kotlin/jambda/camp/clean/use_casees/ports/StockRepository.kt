@@ -5,5 +5,5 @@ import jambda.camp.clean.domain.Stock
 
 interface StockRepository {
     fun getStock(productId: ProductId): Stock
-    fun decrementStock(productId: ProductId, amount: Long)
+    fun updateStock(stock: Stock): Stock
 }

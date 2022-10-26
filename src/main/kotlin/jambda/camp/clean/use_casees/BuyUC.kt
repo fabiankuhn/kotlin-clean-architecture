@@ -21,19 +21,17 @@ class BuyUC(
         val products = productIds.map { productRepository.findById(it) }
         val shoppingCart = ShoppingCart.fromProducts(products)
 
-        shoppingCart.items.forEach {
-            val availableAmount = stockRepository.getStock(it.product.id)
-            if (availableAmount.amount.value < it.amount) {
+        shoppingCart.items.map {
+            val stock = stockRepository.getStock(it.product.id)
+            if (stock.amount.value < it.amount) {
                 throw ProductNotAvailableException("Product ${it.product.name} is not available")
             }
+            stock.decrement(it.amount)
+        }.forEach {
+            stockRepository.updateStock(it)
         }
 
         val sum = shoppingCart.getTotalPrice()
-
-        // TODO reduce stock
-        shoppingCart.items.forEach {
-            stockRepository.decrementStock(it.product.id, it.amount)
-        }
 
         val order = Order(
             orderDate = OrderDate(value = Instant.now()),
