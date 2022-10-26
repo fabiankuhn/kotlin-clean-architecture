@@ -26,13 +26,7 @@ private fun Order.toDto() = OrderDto(
 
 private fun OrderPosition.toDto() = OrderPositionDto(
     amount = this.amount,
-    product = this.product.toDto()
-)
-
-private fun Product.toDto() = ProductDto( // TODO centralize?
-    id = this.id.value,
-    name = this.name.value,
-    price = this.price.value
+    product = ProductDto.fromDomain(this.product)
 )
 
 private fun OrderDto.toDomain(): Order = Order(
@@ -47,8 +41,3 @@ private fun OrderPositionDto.toDomain() = OrderPosition(
     product = this.product!!.toDomain()
 )
 
-private fun ProductDto.toDomain(): Product = Product( // TODO centralize?
-    id = ProductId(this.id!!),
-    name = ProductName(this.name!!),
-    price = ProductPrice(this.price!!)
-)
