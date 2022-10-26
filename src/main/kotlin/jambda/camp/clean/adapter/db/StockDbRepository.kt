@@ -16,24 +16,16 @@ internal class StockDbRepository internal constructor(
 ) : StockRepository {
 
     override fun getStock(productId: ProductId): Stock {
-        return getStockDto(productId)
+        return (stockCrudRepository
+            .findByProductId(productId.value)
+            ?: throw StockNotFoundException("Stock for product id $productId not found"))
             .toDomain()
     }
 
-    override fun decrementStock(productId: ProductId, amount: Long) {
-        val stockDto = getStockDto(productId)
+    override fun updateStock(stock: Stock): Stock = stockCrudRepository
+        .save(StockDto.fromDomain(stock))
+        .toDomain()
 
-        val updatedStockDto = StockDto(
-            id = stockDto.id,
-            product = stockDto.product,
-            amount = stockDto.amount?.minus(amount)
-        )
 
-        stockCrudRepository.save(updatedStockDto)
-    }
-
-    private fun getStockDto(productId: ProductId) = stockCrudRepository
-        .findByProductId(productId.value)
-        ?: throw StockNotFoundException("Stock for product id $productId not found")
 }
 
