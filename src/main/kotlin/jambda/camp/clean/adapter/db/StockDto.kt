@@ -2,6 +2,7 @@ package jambda.camp.clean.adapter.db
 
 import jambda.camp.clean.domain.Stock
 import jambda.camp.clean.domain.StockAmount
+import jambda.camp.clean.domain.StockId
 import org.jetbrains.annotations.NotNull
 import javax.persistence.Entity
 import javax.persistence.Id
@@ -22,8 +23,17 @@ internal data class StockDto(
 ) {
 
     fun toDomain() = Stock(
+        id = StockId(id!!),
         product = this.product!!.toDomain(),
         amount = StockAmount(this.amount!!)
     )
+
+    companion object {
+        fun fromDomain(stock: Stock): StockDto = StockDto(
+            id = stock.id.value,
+            product = ProductDto.fromDomain(stock.product),
+            amount = stock.amount.value
+        )
+    }
 }
 
