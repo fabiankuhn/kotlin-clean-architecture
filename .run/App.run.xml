@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="App" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <option name="ACTIVE_PROFILES" />
+    <module name="clean-architecture-kotlin.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="jambda.camp.clean.CleanArchitectureKotlinApplication" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="jambda.camp.clean.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

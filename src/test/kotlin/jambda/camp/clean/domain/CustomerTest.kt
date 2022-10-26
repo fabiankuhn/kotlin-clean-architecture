@@ -17,7 +17,7 @@ class CustomerTest {
                     lastName = "ignored"
                 )
             }.isInstanceOf(IllegalArgumentException::class.java)
-                .hasMessageContaining("First name can not be empty")
+                .hasMessageContaining("First name can not be null")
         }
 
         @Test
@@ -28,7 +28,7 @@ class CustomerTest {
                     lastName = ""
                 )
             }.isInstanceOf(IllegalArgumentException::class.java)
-                .hasMessageContaining("Last name can not be empty")
+                .hasMessageContaining("Last name can not be null")
         }
     }
 }
