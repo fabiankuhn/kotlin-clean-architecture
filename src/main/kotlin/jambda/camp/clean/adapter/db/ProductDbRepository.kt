@@ -21,11 +21,3 @@ internal class ProductDbRepository internal constructor(
         .orElseThrow { ProductNotFoundException("Product with id ${productId.value} not found") }
         .toDomain()
 }
-
-private fun ProductDto.toDomain(): Product { // TODO maybe centralize
-    return Product(
-        id = ProductId(this.id!!),
-        name = ProductName(this.name!!),
-        price = ProductPrice(this.price!!)
-    )
-}

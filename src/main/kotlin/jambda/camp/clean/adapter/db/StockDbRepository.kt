@@ -12,7 +12,7 @@ internal interface StockCrudRepository : CrudRepository<StockDto, String> {
 
 @Repository
 internal class StockDbRepository internal constructor(
-    private val stockCrudRepository: StockCrudRepository
+    internal val stockCrudRepository: StockCrudRepository
 ) : StockRepository {
 
     override fun getStock(productId: ProductId): Stock {
