@@ -11,7 +11,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "\"stock\"")
-internal data class StockDto(
+internal class StockDto(
     @Id
     @NotNull
     val id: String? = null,
@@ -24,8 +24,8 @@ internal data class StockDto(
 
     fun toDomain() = Stock(
         id = StockId(id!!),
-        product = this.product!!.toDomain(),
-        amount = StockAmount(this.amount!!)
+        product = product!!.toDomain(), // TODO remove this
+        amount = StockAmount(amount!!)
     )
 
     companion object {

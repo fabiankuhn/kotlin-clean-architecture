@@ -13,31 +13,6 @@ internal class OrderDbRepository internal constructor(
 ) : OrderRepository {
 
     override fun save(order: Order): Order = orderRepository
-        .save(order.toDto())
+        .save(OrderDto.fromDomain(order))
         .toDomain()
 }
-
-private fun Order.toDto() = OrderDto(
-    customerId = this.customerId.value,
-    orderDate = this.orderDate.value,
-    totalPrice = this.totalPrice.value,
-    positions = this.positions.map { it.toDto() }
-)
-
-private fun OrderPosition.toDto() = OrderPositionDto(
-    amount = this.amount,
-    product = ProductDto.fromDomain(this.product)
-)
-
-private fun OrderDto.toDomain(): Order = Order(
-    customerId = OrderCustomerId(this.customerId!!),
-    orderDate = OrderDate(this.orderDate!!),
-    totalPrice = OrderPrice(this.totalPrice!!),
-    positions = this.positions.map { it.toDomain() }
-)
-
-private fun OrderPositionDto.toDomain() = OrderPosition(
-    amount = this.amount!!,
-    product = this.product!!.toDomain()
-)
-
