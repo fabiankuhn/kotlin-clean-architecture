@@ -10,7 +10,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "\"order\"")
-internal class OrderDto(
+internal data class OrderDto(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
@@ -32,7 +32,6 @@ internal class OrderDto(
         totalPrice = OrderPrice(this.totalPrice!!),
         positions = this.positions.map { it.toDomain() }
     )
-
 
     companion object {
         fun fromDomain(order: Order) = OrderDto(

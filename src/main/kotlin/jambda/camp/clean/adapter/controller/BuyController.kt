@@ -10,21 +10,20 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class BuyController(
-    stockRepository: StockRepository,
-    productRepository: ProductRepository,
-    orderRepository: OrderRepository
+    val stockRepository: StockRepository,
+    val productRepository: ProductRepository,
+    val orderRepository: OrderRepository
 ) {
-    val buyService = BuyUC(
-        stockRepository = stockRepository,
-        orderRepository =  orderRepository,
-        productRepository =  productRepository
-    )
+    val buyUC = BuyUC()
 
     @PostMapping
     private fun buy(orderRequestDto: OrderRequestDto): OrderDto {
-        val order = buyService.buy(
-            CustomerId(orderRequestDto.customerId),
-            orderRequestDto.productIds.map { ProductId(it) }
+        val order = buyUC.buy(
+            stockRepository = stockRepository,
+            orderRepository = orderRepository,
+            productRepository = productRepository,
+            customerId = CustomerId(orderRequestDto.customerId),
+            productIds = orderRequestDto.productIds.map { ProductId(it) }
         )
 
         return OrderDto.fromDomain(order)

@@ -3,7 +3,7 @@ package jambda.camp.clean.adapter.controller
 import jambda.camp.clean.domain.Order
 import java.time.Instant
 
-internal class OrderDto (
+internal data class OrderDto (
     val orderDate: Instant,
     val totalPrice: Double,
     val orderPosition: List<OrderPositionDto>
