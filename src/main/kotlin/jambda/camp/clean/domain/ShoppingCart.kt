@@ -1,6 +1,6 @@
 package jambda.camp.clean.domain
 
-class ShoppingCart(
+data class ShoppingCart(
     val items: List<ShoppingCartPosition>
 ) {
     fun getTotalPrice(): Double = items.sumOf { it.product.price.value * it.amount }

@@ -1,6 +1,6 @@
 package jambda.camp.clean.adapter.controller
 
-internal class OrderRequest(
+internal class OrderRequestDto(
     val customerId: String,
     val productIds: List<String>
 )

@@ -31,11 +31,13 @@ class BuyUC(
             stockRepository.updateStock(it)
         }
 
-        val sum = shoppingCart.getTotalPrice()
-
         val order = Order(
-            orderDate = OrderDate(value = Instant.now()),
-            totalPrice = OrderPrice(value = sum),
+            orderDate = OrderDate(
+                value = Instant.now()
+            ),
+            totalPrice = OrderPrice(
+                value = shoppingCart.getTotalPrice()
+            ),
             customerId = OrderCustomerId(customerId.value),
             positions = shoppingCart.items.map {
                 OrderPosition(
