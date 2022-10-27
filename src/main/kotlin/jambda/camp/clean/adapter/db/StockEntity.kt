@@ -12,7 +12,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "\"stock\"")
-internal data class StockDto(
+internal data class StockEntity(
 
     @Id
     @NotNull
@@ -21,7 +21,7 @@ internal data class StockDto(
     @MapsId
     @OneToOne
     @NotNull
-    val product: ProductDto? = null,
+    val product: ProductEntity? = null,
     var amount: Long? = 0
 ) {
 
@@ -32,9 +32,9 @@ internal data class StockDto(
     )
 
     companion object {
-        fun fromDomain(stock: Stock): StockDto = StockDto(
+        fun fromDomain(stock: Stock): StockEntity = StockEntity(
             id = stock.id.value,
-            product = ProductDto.fromDomain(stock.product),
+            product = ProductEntity.fromDomain(stock.product),
             amount = stock.amount.value
         )
     }

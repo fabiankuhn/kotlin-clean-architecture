@@ -5,7 +5,7 @@ import jambda.camp.clean.use_casees.ports.OrderRepository
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
-internal interface OrderCrudRepository : CrudRepository<OrderDto, Long>
+internal interface OrderCrudRepository : CrudRepository<OrderEntity, Long>
 
 @Repository
 internal class OrderDbRepository internal constructor(
@@ -13,6 +13,6 @@ internal class OrderDbRepository internal constructor(
 ) : OrderRepository {
 
     override fun save(order: Order): Order = orderRepository
-        .save(OrderDto.fromDomain(order))
+        .save(OrderEntity.fromDomain(order))
         .toDomain()
 }

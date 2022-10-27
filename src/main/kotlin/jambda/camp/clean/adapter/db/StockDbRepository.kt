@@ -6,8 +6,8 @@ import jambda.camp.clean.use_casees.ports.StockRepository
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
-internal interface StockCrudRepository : CrudRepository<StockDto, Long> {
-    fun findByProductId(productId: Long): StockDto?
+internal interface StockCrudRepository : CrudRepository<StockEntity, Long> {
+    fun findByProductId(productId: Long): StockEntity?
 }
 
 @Repository
@@ -23,7 +23,7 @@ internal class StockDbRepository internal constructor(
     }
 
     override fun updateStock(stock: Stock): Stock = stockCrudRepository
-        .save(StockDto.fromDomain(stock))
+        .save(StockEntity.fromDomain(stock))
         .toDomain()
 
 
