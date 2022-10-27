@@ -15,5 +15,5 @@ data class ProductPrice(
 )
 
 data class ProductId(
-    val value: String
+    val value: Long
 )

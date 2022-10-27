@@ -1,5 +1,7 @@
 package jambda.camp.clean.domain
 
+import jambda.camp.clean.domain.exceptions.ProductNotAvailableException
+
 data class Stock (
     val id: StockId,
     val product: Product,
@@ -10,10 +12,15 @@ data class Stock (
         product = product,
         amount = StockAmount(amount.value - decrementAmount)
     )
+    fun verifyAvailable(requestedAmount: Long){
+        if (amount.value < requestedAmount) {
+            throw ProductNotAvailableException("Product ${product.name} is not available")
+        }
+    }
 }
 
 data class StockId (
-    val value: String // TODO clean it up bro
+    val value: Long
 )
 
 data class StockAmount (

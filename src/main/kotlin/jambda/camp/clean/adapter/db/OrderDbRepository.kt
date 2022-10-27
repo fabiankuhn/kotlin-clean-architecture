@@ -5,7 +5,7 @@ import jambda.camp.clean.use_casees.ports.OrderRepository
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
-internal interface OrderCrudRepository : CrudRepository<OrderDto, String>
+internal interface OrderCrudRepository : CrudRepository<OrderDto, Long>
 
 @Repository
 internal class OrderDbRepository internal constructor(

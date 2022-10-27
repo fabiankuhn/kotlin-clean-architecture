@@ -2,7 +2,7 @@ package jambda.camp.clean.adapter.controller
 
 import jambda.camp.clean.domain.OrderPosition
 
-internal class OrderPositionDto (
+internal data class OrderPositionDto (
     val amount: Long,
     val productName: String
 ) {

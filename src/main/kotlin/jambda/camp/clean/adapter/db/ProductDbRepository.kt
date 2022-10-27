@@ -9,7 +9,7 @@ import jambda.camp.clean.use_casees.ports.ProductRepository
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
-internal interface ProductCrudRepository : CrudRepository<ProductDto, String>
+internal interface ProductCrudRepository : CrudRepository<ProductDto, Long>
 
 @Repository
 internal class ProductDbRepository internal constructor(

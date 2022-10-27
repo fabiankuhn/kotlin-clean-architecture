@@ -6,25 +6,28 @@ import jambda.camp.clean.domain.StockId
 import org.jetbrains.annotations.NotNull
 import javax.persistence.Entity
 import javax.persistence.Id
+import javax.persistence.MapsId
 import javax.persistence.OneToOne
 import javax.persistence.Table
 
 @Entity
 @Table(name = "\"stock\"")
-internal class StockDto(
+internal data class StockDto(
+
     @Id
     @NotNull
-    val id: String? = null,
+    val id: Long? = null,
+
+    @MapsId
     @OneToOne
     @NotNull
     val product: ProductDto? = null,
     var amount: Long? = 0
-
 ) {
 
     fun toDomain() = Stock(
         id = StockId(id!!),
-        product = product!!.toDomain(), // TODO remove this
+        product = product!!.toDomain(),
         amount = StockAmount(amount!!)
     )
 

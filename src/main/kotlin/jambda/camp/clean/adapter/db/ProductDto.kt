@@ -14,7 +14,7 @@ import javax.persistence.Table
 internal data class ProductDto(
     @Id
     @NotNull
-    val id: String? = null,
+    val id: Long? = null,
     @NotNull
     val name: String? = null,
     @NotNull

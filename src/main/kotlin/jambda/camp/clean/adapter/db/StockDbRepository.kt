@@ -6,8 +6,8 @@ import jambda.camp.clean.use_casees.ports.StockRepository
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
-internal interface StockCrudRepository : CrudRepository<StockDto, String> {
-    fun findByProductId(productId: String): StockDto?
+internal interface StockCrudRepository : CrudRepository<StockDto, Long> {
+    fun findByProductId(productId: Long): StockDto?
 }
 
 @Repository
