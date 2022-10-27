@@ -11,7 +11,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "\"product\"")
-internal data class ProductDto(
+internal data class ProductEntity(
     @Id
     @NotNull
     val id: Long? = null,
@@ -28,7 +28,7 @@ internal data class ProductDto(
     )
 
     companion object {
-        fun fromDomain(product: Product): ProductDto = ProductDto(
+        fun fromDomain(product: Product): ProductEntity = ProductEntity(
             id = product.id.value,
             name = product.name.value,
             price = product.price.value

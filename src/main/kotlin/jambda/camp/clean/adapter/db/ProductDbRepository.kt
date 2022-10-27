@@ -2,14 +2,12 @@ package jambda.camp.clean.adapter.db
 
 import jambda.camp.clean.domain.Product
 import jambda.camp.clean.domain.ProductId
-import jambda.camp.clean.domain.ProductName
-import jambda.camp.clean.domain.ProductPrice
 import jambda.camp.clean.domain.exceptions.ProductNotFoundException
 import jambda.camp.clean.use_casees.ports.ProductRepository
 import org.springframework.data.repository.CrudRepository
 import org.springframework.stereotype.Repository
 
-internal interface ProductCrudRepository : CrudRepository<ProductDto, Long>
+internal interface ProductCrudRepository : CrudRepository<ProductEntity, Long>
 
 @Repository
 internal class ProductDbRepository internal constructor(

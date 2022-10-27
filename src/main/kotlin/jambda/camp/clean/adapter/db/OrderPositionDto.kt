@@ -14,7 +14,7 @@ internal class OrderPositionDto(
     val amount: Long? = null,
     @OneToOne
     @NotNull
-    val product: ProductDto? = null
+    val product: ProductEntity? = null
 ) {
 
     fun toDomain() = OrderPosition(
@@ -25,7 +25,7 @@ internal class OrderPositionDto(
     companion object {
         fun fromDomain(orderPositionDto: OrderPosition) = OrderPositionDto(
             amount = orderPositionDto.amount,
-            product = ProductDto.fromDomain(orderPositionDto.product)
+            product = ProductEntity.fromDomain(orderPositionDto.product)
         )
     }
 }
